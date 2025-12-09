@@ -72,6 +72,7 @@ class Bird(pg.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = xy
         self.speed = 10
+        self.high_speed = 20
 
     def change_img(self, num: int, screen: pg.Surface):
         """
@@ -444,6 +445,10 @@ def main():
                 if score.value >= 50 and len(shields) == 0:
                     shields.add(Shield(bird))
                     score.value -= 50  # スコア消費
+            if event.type == pg.KEYDOWN and event.key == pg.K_LSHIFT:
+                bird.speed = bird.high_speed
+            else:
+                bird.speed = bird.speed
         screen.blit(bg_img, [0, 0])
         
         
